@@ -1,7 +1,43 @@
-let inputs = document.querySelectorAll('.editor-panel input');
+/*REFACTORED FUNCTION*/
 
-/* 'this.name' refers to the input's name atribute, which has been intentionally called after the css variables that we want to modify. */
-function triggerClick() {
-    document.documentElement.style.setProperty(`--${this.name}`, this.value);
+function palindrome(x) {  
+
+let str = x.toLowerCase().replace(/[\W_]/g, "");
+
+for (let i=0; i<str.length; i++) {
+  if (str[i] !== str[str.length - (i+1)]) {
+    return false;
+  }
 }
-inputs.forEach(input => input.addEventListener('change', triggerClick));
+  return true;
+}
+
+console.log(palindrome("almottomla"));
+
+
+/* FIRST VERSION 
+function palindrome(str) {  
+let regEx = /[A-Za-z0-9]+/g
+let original = str.match(regEx).join("").toLowerCase();
+let reverse = [];
+let result = true;
+  
+for (let i=original.length - 1; i>= 0; i--)  {
+  reverse.push(original[i]);
+}
+
+let compare = function(str1, str2) {
+for (let i=0; i<str1.length; i++) {
+  if (str1[i] !== str2[i]) {
+    result = false;
+  }
+}
+  }
+
+compare(reverse,original);
+compare(original,reverse);
+
+return result; 
+}
+
+*/
